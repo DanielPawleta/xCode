@@ -17,8 +17,9 @@ public class MyController {
     @PostMapping("/numbers/sort-command")
     public PostResponse sort(@RequestBody PostRequest postRequest){
         System.out.println("elo");
-        PostResponse postResponse = new PostResponse();;
-        postResponse.setMessage("Hello " + postRequest.getName());
+        PostResponse postResponse = new PostResponse();
+
+        postResponse.setMessage(String.valueOf(postRequest.getNumbers()));
 
         return postResponse;
     }
