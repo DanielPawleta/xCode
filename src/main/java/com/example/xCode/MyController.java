@@ -5,8 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 public class MyController {
 
     @GetMapping("/status/ping")
@@ -15,13 +16,23 @@ public class MyController {
     }
 
     @PostMapping("/numbers/sort-command")
-    public PostResponse sort(@Valid @RequestBody PostRequest postRequest){
+    public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
 
         System.out.println("metoda sort w controller");
-        PostResponse postResponse = new PostResponse();
-        postResponse.setResponse(String.valueOf(postRequest.getNumbers()));
+        NumbersPostResponse postResponse = new NumbersPostResponse();
+        postResponse.setNumbers(postRequest.getNumbers());
 
         return postResponse;
+    }
+
+    @PostMapping("/currencies/get-current-currency-value-command")
+    public CurrencyPostResponse getCurrentCurrencyValue(@Valid @RequestBody CurrencyPostRequest postRequest){
+
+        System.out.println("metoda get currency w controller");
+        CurrencyPostResponse currencyPostResponse = new CurrencyPostResponse();
+        currencyPostResponse.setCurrencyValue(postRequest.getCurrencyName());
+
+        return currencyPostResponse;
     }
 
 }

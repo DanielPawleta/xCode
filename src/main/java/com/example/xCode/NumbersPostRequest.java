@@ -1,20 +1,21 @@
 package com.example.xCode;
 
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PostRequest {
-    
-    private ArrayList<@Digits(integer = 2, fraction = 0, message = "only digits please")Integer> numbers;
+public class NumbersPostRequest {
 
-    @Pattern(regexp = "ASC|DESC", message = "zly pattern")
+    private ArrayList<@Digits(integer = 100, fraction = 0, message = "Only integers please") BigDecimal> numbers;
+    //private ArrayList<@Pattern(regexp = "^[0-9]*$", message = "Only integers please") BigDecimal> numbers;
+
+    @Pattern(regexp = "ASC|DESC", message = "Please type ASC or DESC")
     private String order;
 
-    public PostRequest() {
+    public NumbersPostRequest() {
         System.out.println("No-argument constructor in request");
     }
 
@@ -23,14 +24,14 @@ public class PostRequest {
         return order;
     }
 
-    public ArrayList<Integer> getNumbers() {
+    public ArrayList<BigDecimal> getNumbers() {
         if (numbers==null) return null;
         numbers.sort(null);
         if (order.equals("DESC")) Collections.reverse(numbers);
         return numbers;
     }
 
-    public void setNumbers(ArrayList<Integer> numbers) {
+    public void setNumbers(ArrayList<BigDecimal> numbers) {
         System.out.println("number setter");
         if (numbers==null) System.out.println("numbers null");
         this.numbers = numbers;
