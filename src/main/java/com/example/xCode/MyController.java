@@ -1,11 +1,15 @@
 package com.example.xCode;
 
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class MyController {
@@ -17,22 +21,22 @@ public class MyController {
 
     @PostMapping("/numbers/sort-command")
     public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
-
-        System.out.println("metoda sort w controller");
         NumbersPostResponse postResponse = new NumbersPostResponse();
         postResponse.setNumbers(postRequest.getNumbers());
-
         return postResponse;
     }
 
     @PostMapping("/currencies/get-current-currency-value-command")
     public CurrencyPostResponse getCurrentCurrencyValue(@Valid @RequestBody CurrencyPostRequest postRequest){
-
-        System.out.println("metoda get currency w controller");
         CurrencyPostResponse currencyPostResponse = new CurrencyPostResponse();
-        currencyPostResponse.setCurrencyValue(postRequest.getCurrencyName());
 
+        String uri;
+        uri = String.format("http://api.nbp.pl/api/exchangerates/rates/a/%s/",postRequest.getCurrency());
+
+        RestTemplate restTemplate = new RestTemplate();
+        CurrencyNBPResponse currencyNBPResponse = restTemplate.getForObject(uri, CurrencyNBPResponse.class);
+
+        currencyPostResponse.setValue(currencyNBPResponse.getRates().get(0).getMid());
         return currencyPostResponse;
     }
-
 }

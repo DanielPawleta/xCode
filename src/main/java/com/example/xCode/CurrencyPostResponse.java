@@ -1,26 +1,12 @@
 package com.example.xCode;
 
+import lombok.Getter;
+
+@Getter
 public class CurrencyPostResponse {
-    private Float currencyValue;
+    private Float value;
 
-    public void setCurrencyValue(String currencyName) {
-        System.out.println("currency response set currency value method");
-
-
-
-
-        this.currencyValue = 4.7f;
+    public void setValue(String value) {
+        this.value = Float.valueOf(value);
     }
-
-
-
-    public Float getCurrencyValue() {
-        return currencyValue;
-    }
-
-    public CurrencyPostResponse() {
-        System.out.println("currency response created");
-    }
-
-
 }
