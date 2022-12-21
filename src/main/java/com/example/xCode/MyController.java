@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
 @RestController
 public class MyController {
 
     @GetMapping("/status/ping")
     public ResponseEntity<String> getPong(){
+        System.out.println("pong");
         return ResponseEntity.ok("pong");
     }
 
@@ -23,6 +27,9 @@ public class MyController {
     public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
         NumbersPostResponse postResponse = new NumbersPostResponse();
         postResponse.setNumbers(postRequest.getNumbers());
+        System.out.println("sort command");
+        //System.out.println(postRequest.getNumbers());
+        System.out.println("post response: " + postResponse.getNumbers());
         return postResponse;
     }
 

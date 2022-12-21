@@ -1,0 +1,59 @@
+
+<div>
+  <br>
+  <button mat-raised-button (click)="onClickPing()">Ping</button>
+  {{pong}}
+  <br>
+  <br>
+  <br>
+  <br>
+  Type a number below and click add button
+  <br>
+  <br>
+  <input type="text" 
+  #box 
+  placeholder="Enter Number" 
+  name="username">
+  <button mat-raised-button (click)="onClickAdd(box.value)">Add</button>
+  {{onlyNumbersPlease}}
+  <br>
+  <br>
+  Numbers: 
+
+  <ol>
+    <li *ngFor="let numberFromUser of numbersFromUser"> {{numberFromUser}} </li>
+ </ol>
+ <button mat-raised-button (click)="onClickSort()">Sort</button>
+ <br>
+ <br>
+  Sorted numbers: 
+  <br>
+
+
+ <br>
+ <br>
+ {{sortedNumbersArray}}
+
+ <br>
+ <br>
+
+
+
+ 
+  {{onClickString}}
+  
+  <br>
+  <br>
+  {{arrayBigDecimal}}
+  <br>
+  <br>
+
+  
+</div>
+<br>
+
+
+
+
+
+
