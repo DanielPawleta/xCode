@@ -1,10 +1,16 @@
 
 <div>
   <br>
-  <button mat-raised-button (click)="onClickPing()">Ping</button>
+  <button mat-raised-button (click)="onClickPing()" [disabled]=isDisabledPing>Ping</button>
   {{pong}}
   <br>
   <br>
+  <br>
+  <br>
+  Choose order:
+  <button mat-raised-button [color]="ascendingButtonColor" (click)="onClickAscending()">Ascending</button>
+  <button mat-raised-button [color]="descendingButtonColor" (click)="onClickDescending()">Descending</button>
+ 
   <br>
   <br>
   Type a number below and click add button
@@ -12,8 +18,7 @@
   <br>
   <input type="text" 
   #box 
-  placeholder="Enter Number" 
-  name="username">
+  placeholder="Enter Number">
   <button mat-raised-button (click)="onClickAdd(box.value)">Add</button>
   {{onlyNumbersPlease}}
   <br>
@@ -23,31 +28,37 @@
   <ol>
     <li *ngFor="let numberFromUser of numbersFromUser"> {{numberFromUser}} </li>
  </ol>
+
+ <br>
  <button mat-raised-button (click)="onClickSort()">Sort</button>
  <br>
  <br>
   Sorted numbers: 
   <br>
-
-
+<br>
  <br>
  <br>
- {{sortedNumbersArray}}
-
  <br>
+ {{sortedNumbersDTO.numbers}}
  <br>
-
-
-
- 
-  {{onClickString}}
+  <br>
   
-  <br>
-  <br>
-  {{arrayBigDecimal}}
-  <br>
-  <br>
 
+  Type 3-digit currency code
+  <br>
+  <br>
+  <input type="text" 
+  #boxCurrency 
+  placeholder="Enter 3-digit">
+  <button mat-raised-button (click)="onClickGetCurrencyValue(boxCurrency.value)">Get currency value</button>
+  <br>
+  {{wrongCodeWarn}}
+  <br>
+  <br>
+  Currency value:
+  <br>
+  <br>
+  <div *ngIf="isCurrencyValueLoaded">{{currencyValueDTO.value}}</div>
   
 </div>
 <br>

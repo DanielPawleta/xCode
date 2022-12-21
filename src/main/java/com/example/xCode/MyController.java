@@ -19,7 +19,6 @@ public class MyController {
 
     @GetMapping("/status/ping")
     public ResponseEntity<String> getPong(){
-        System.out.println("pong");
         return ResponseEntity.ok("pong");
     }
 
@@ -27,9 +26,6 @@ public class MyController {
     public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
         NumbersPostResponse postResponse = new NumbersPostResponse();
         postResponse.setNumbers(postRequest.getNumbers());
-        System.out.println("sort command");
-        //System.out.println(postRequest.getNumbers());
-        System.out.println("post response: " + postResponse.getNumbers());
         return postResponse;
     }
 
@@ -41,6 +37,7 @@ public class MyController {
         uri = String.format("http://api.nbp.pl/api/exchangerates/rates/a/%s/",postRequest.getCurrency());
 
         RestTemplate restTemplate = new RestTemplate();
+
         CurrencyNBPResponse currencyNBPResponse = restTemplate.getForObject(uri, CurrencyNBPResponse.class);
 
         currencyPostResponse.setValue(currencyNBPResponse.getRates().get(0).getMid());

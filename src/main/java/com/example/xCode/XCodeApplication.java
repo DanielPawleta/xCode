@@ -13,7 +13,6 @@ import java.util.Arrays;
 public class XCodeApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(XCodeApplication.class, args);
 	}
 
