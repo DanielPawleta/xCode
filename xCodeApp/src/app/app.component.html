@@ -1,4 +1,3 @@
-
 <div>
   <br>
   <button mat-raised-button (click)="onClickPing()" [disabled]=isDisabledPing>Ping</button>
@@ -10,7 +9,6 @@
   Choose order:
   <button mat-raised-button [color]="ascendingButtonColor" (click)="onClickAscending()">Ascending</button>
   <button mat-raised-button [color]="descendingButtonColor" (click)="onClickDescending()">Descending</button>
- 
   <br>
   <br>
   Type a number below and click add button
@@ -24,26 +22,22 @@
   <br>
   <br>
   Numbers: 
-
   <ol>
     <li *ngFor="let numberFromUser of numbersFromUser"> {{numberFromUser}} </li>
- </ol>
-
- <br>
- <button mat-raised-button (click)="onClickSort()">Sort</button>
- <br>
- <br>
+  </ol>
+  <br>
+  <button mat-raised-button (click)="onClickSort()">Sort</button>
+  <br>
+  <br>
   Sorted numbers: 
   <br>
-<br>
- <br>
- <br>
- <br>
- {{sortedNumbersDTO.numbers}}
- <br>
   <br>
-  
-
+  <br>
+  <br>
+  <br>
+  {{sortedNumbersDTO.numbers}}
+  <br>
+  <br>
   Type 3-digit currency code
   <br>
   <br>
@@ -58,13 +52,6 @@
   Currency value:
   <br>
   <br>
+  {{currencyCodeNotFound}}
   <div *ngIf="isCurrencyValueLoaded">{{currencyValueDTO.value}}</div>
-  
 </div>
-<br>
-
-
-
-
-
-

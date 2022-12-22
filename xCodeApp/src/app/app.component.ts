@@ -22,6 +22,7 @@ export class AppComponent {
 
   public currencyCodeDTO: CurrencyCodeDTO = {currency:''}
   public wrongCodeWarn:string = '';
+  public currencyCodeNotFound:string = '';
   public currencyValueDTO: CurrencyValueDTO = {value: 1}
   public isCurrencyValueLoaded: boolean = false;
 
@@ -97,8 +98,12 @@ export class AppComponent {
     this.sortService.getCurrencyValue(this.currencyCodeDTO).subscribe(
       (response: any) => {
         this.currencyValueDTO = response;
+        this.isCurrencyValueLoaded=true;
+        this.currencyCodeNotFound = '';
+      },
+      err =>{
+        this.currencyCodeNotFound = "Currency code not found"
       }
     )
-    this.isCurrencyValueLoaded=true;
   }
 }

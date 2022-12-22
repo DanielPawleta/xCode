@@ -1,18 +1,12 @@
 package com.example.xCode;
 
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
 
 @RestController
 public class MyController {
@@ -25,7 +19,8 @@ public class MyController {
     @PostMapping("/numbers/sort-command")
     public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
         NumbersPostResponse postResponse = new NumbersPostResponse();
-        postResponse.setNumbers(postRequest.getNumbers());
+        postResponse.setNumbers(postRequest.sortNumbers());
+        System.out.println("sort command");
         return postResponse;
     }
 
