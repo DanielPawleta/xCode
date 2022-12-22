@@ -20,7 +20,6 @@ public class MyController {
     public NumbersPostResponse sort(@Valid @RequestBody NumbersPostRequest postRequest){
         NumbersPostResponse postResponse = new NumbersPostResponse();
         postResponse.setNumbers(postRequest.sortNumbers());
-        System.out.println("sort command");
         return postResponse;
     }
 
